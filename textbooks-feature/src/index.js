@@ -5,9 +5,7 @@
  */
 import { registerBlockType } from '@wordpress/blocks';
 import { SelectControl } from '@wordpress/components';
-// import { withSelect } from '@wordpress/data';
 import { select } from '@wordpress/core-data';
-// import { getEntityRecords } from '@wordpress/core-data';
 
 /**
  * Retrieves the translation of text.
