@@ -1,10 +1,10 @@
 <?php
 /**
  * Plugin Name:     Bccampus Textbooks
- * Plugin URI:      PLUGIN SITE HERE
- * Description:     PLUGIN DESCRIPTION HERE
- * Author:          YOUR NAME HERE
- * Author URI:      YOUR SITE HERE
+ * Plugin URI:      https://github.com/TomSequitur/BCCampusPlugin
+ * Description:     Provides Textbook custom post type and Institutions taxonomy.  Also provides four Gutenberg blocks: author, license date, publication date, and feature display.
+ * Author:          Tom Jarvis
+ * Author URI:      https://tomsequitur.com
  * Text Domain:     bccampus-textbooks
  * Domain Path:     /languages
  * Version:         0.1.0
@@ -18,7 +18,9 @@ include('textbooks-license/textbooks-license.php');
 include('textbooks-publication-date/textbooks-publication-date.php');
 include('textbooks-feature/textbooks-feature.php');
 
-// 1. Custom Post Type Registration (textbook)
+/**
+ * Custom Post Type Registration - Textbooks
+ */
 add_action('init', 'create_textbook_post_type');
 function create_textbook_post_type()
 {
@@ -60,7 +62,9 @@ function create_textbook_post_type()
     register_post_type('textbook', $args);
 }
 
-//
+/**
+ * Custom Taxonomy Registration - Institutions
+ */
 add_action('init', 'create_institution_cat_taxonomy', 0);
 function create_institution_cat_taxonomy()
 {
@@ -93,9 +97,3 @@ function create_institution_cat_taxonomy()
         'rest_controller_class' => 'WP_REST_Terms_Controller',
     ));
 }
-
-//
-// function bccampus_textbooks_theme() {
-// 	wp_enqueue_style('bulma', 'https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma-rtl.min.css');
-// }
-// add_action('wp_enqueue_scripts', 'bccampus_textbooks_theme');
