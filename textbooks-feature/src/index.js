@@ -4,7 +4,10 @@
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { PlainText } from '@wordpress/block-editor';
+import { SelectControl } from '@wordpress/components';
+// import { withSelect } from '@wordpress/data';
+import { select } from '@wordpress/core-data';
+// import { getEntityRecords } from '@wordpress/core-data';
 
 /**
  * Retrieves the translation of text.
@@ -25,13 +28,13 @@ import './style.scss';
 /**
  * Internal dependencies
  */
-// import Edit from './edit';
-// import save from './save';
+import Edit from './edit';
+import save from './save';
 
 // Our filter function
 function addBlockClassName( props, blockType ) {
-	if(blockType.name === 'create-block/textbooks-author') {
-        return Object.assign( props, { className: 'textbooks-author' } );
+	if(blockType.name === 'create-block/textbooks-license') {
+        return Object.assign( props, { className: 'textbooks-license' } );
     }
     return props;
 }
@@ -46,19 +49,19 @@ wp.hooks.addFilter(
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'create-block/textbooks-author', {
+registerBlockType( 'create-block/textbooks-feature', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Author', 'create-block' ),
+	title: __( 'Textbooks Feature', 'create-block' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Example block written for BC Campus interview.  Provides Author Gutenberg block for Textbooks custom post type.',
+		'Example block written with ESNext standard and JSX support – build step required.',
 		'create-block'
 	),
 
@@ -69,14 +72,14 @@ registerBlockType( 'create-block/textbooks-author', {
 	category: 'widgets',
 
 	/**
-	 * Block Attributtes
+	 * Attributtes
 	 */
 	attributes: {
-        content: {
-            type: 'array',
+		content: {
+			type: 'array',
             source: 'children',
-			selector: 'address',
-        },
+			selector: 'p',
+		},
 	},
 
 	/**
@@ -94,28 +97,27 @@ registerBlockType( 'create-block/textbooks-author', {
 	},
 
 	/**
-	 * Edit
+	 * @see ./edit.js
 	 */
+	// edit: Edit,
 	edit: ( props ) => {
-        const { attributes: { content }, setAttributes, className } = props;
-        const onChangeContent = ( newContent ) => {
-            setAttributes( { content: newContent } );
-        };
-        return (
-            <PlainText
-                tagName="address"
+		const { attributes: { content }, setAttributes, className } = props;
+		let textbookPosts = wp.data.select( 'core' ).getEntityRecords( 'postType', 'textbook', { per_page: -1 } );
+
+		return (
+			<SelectControl
+				tagName="select"
 				className={ className }
-				label="Author"
+				label="Textbooks"
 				value={ content }
-                onChange={ onChangeContent }
-            />
-        );
-    },
+				options={ null }
+				onChange={ null }
+			/>
+		);
+	},
 
 	/**
-	 * Save
+	 * @see ./save.js
 	 */
-	save: ( props ) => {
-        return <address>{ props.attributes.content }</address>;
-    },
+	save,
 } );

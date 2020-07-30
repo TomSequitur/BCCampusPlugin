@@ -5,7 +5,6 @@
  */
 import { registerBlockType } from '@wordpress/blocks';
 import { SelectControl } from '@wordpress/components';
-import { withState } from '@wordpress/compose';
 
 /**
  * Retrieves the translation of text.
@@ -84,7 +83,7 @@ registerBlockType( 'create-block/textbooks-license', {
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: 'smiley',
+	icon: 'media-text',
 
 	/**
 	 * Optional block extended support features.
@@ -95,9 +94,8 @@ registerBlockType( 'create-block/textbooks-license', {
 	},
 
 	/**
-	 * @see ./edit.js
+	 * Edit:
 	 */
-	// edit: Edit,
 	edit: ( props ) => {
 		const { attributes: { content }, setAttributes, className } = props;
 		const onChangeContent = ( value ) => {
@@ -121,9 +119,8 @@ registerBlockType( 'create-block/textbooks-license', {
     },
 
 	/**
-	 * @see ./save.js
+	 * Save:
 	 */
-	// save,
 	save: ( props ) => {
 		return <p>{ props.attributes.content }</p>;
 	},

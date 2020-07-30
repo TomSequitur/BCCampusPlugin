@@ -5,8 +5,6 @@
  */
 import { registerBlockType } from '@wordpress/blocks';
 import { DateTimePicker } from '@wordpress/components';
-// import { __experimentalGetSettings } from '@wordpress/date';
-import { withState } from '@wordpress/compose';
 
 /**
  * Retrieves the translation of text.
@@ -27,8 +25,6 @@ import './style.scss';
 /**
  * Internal dependencies
  */
-// import Edit from './edit';
-// import save from './save';
 
 // Our filter function
 function addBlockClassName( props, blockType ) {
@@ -85,7 +81,7 @@ registerBlockType( 'create-block/textbooks-publication-date', {
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: 'smiley',
+	icon: 'calendar-alt',
 
 	/**
 	 * Optional block extended support features.
@@ -96,9 +92,8 @@ registerBlockType( 'create-block/textbooks-publication-date', {
 	},
 
 	/**
-	 * @see ./edit.js
+	 * Edit:
 	 */
-	// edit: Edit,
 	edit: ( props ) => {
 		const { attributes: { datetime }, setAttributes, className } = props;
 		const onUpdateDate = ( dateTime ) => {
@@ -120,9 +115,8 @@ registerBlockType( 'create-block/textbooks-publication-date', {
 	},
 
 	/**
-	 * @see ./save.js
+	 * Save:
 	 */
-	// save,
 	save: ( props ) => {
 		return <p>{ props.attributes.datetime }</p>;
 	}

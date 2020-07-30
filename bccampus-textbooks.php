@@ -16,7 +16,7 @@
 include('textbooks-author/textbooks-author.php');
 include('textbooks-license/textbooks-license.php');
 include('textbooks-publication-date/textbooks-publication-date.php');
-// include('textbooks-display/textbooks-display.php');
+include('textbooks-feature/textbooks-feature.php');
 
 // 1. Custom Post Type Registration (textbook)
 add_action('init', 'create_textbook_post_type');
