@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Textbooks Publication Date
- * Description:     Example block written with ESNext standard and JSX support – build step required.
+ * Description:     Provides License datepicker Gutenberg block for Textbook posts.
  * Version:         0.1.0
  * Author:          The WordPress Contributors
  * License:         GPL-2.0-or-later
